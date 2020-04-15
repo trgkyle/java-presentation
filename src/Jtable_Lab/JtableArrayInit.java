@@ -49,7 +49,6 @@ public class JtableArrayInit extends JFrame {
         Scanner scanner = new Scanner(System.in);
 
         for (int i = 0; i < n; i++) {
-
             Student a = new Student();
             a.Nhap();
             t.add(a);
