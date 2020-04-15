@@ -21,7 +21,7 @@ import java.awt.FlowLayout;
 import java.awt.*;
 import java.awt.event.*;
 
-public class JtableInit {
+public class JtableScroll {
     // frame 
 
     JFrame f;
@@ -41,7 +41,7 @@ public class JtableInit {
     }
 
     // Constructor 
-    JtableInit() {
+    JtableScroll() {
         // Frame initiallization 
         f = new JFrame();
 
@@ -103,6 +103,6 @@ public class JtableInit {
 
     // Driver method 
     public static void main(String[] args) {
-        new JtableInit();
+        new JtableScroll();
     }
 }

@@ -14,11 +14,6 @@ package Jtable_Lab;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Vector;
@@ -47,15 +42,13 @@ public class JtableArrayListInit extends JFrame {
     private JTable jtable = new JTable();
     private DefaultTableModel tableModel = new DefaultTableModel();
 
-    public JtableArrayListInit() {
+    public JtableArrayListInit(int n) {
         String[] colsName = {"Ma SV", "Ho ten", "Gioi tinh", "Dai so", "Kinh te", "Triet hoc"};
         tableModel.setColumnIdentifiers(colsName);  // đặt tiêu đề cột cho tableModel
         ArrayList<Student> t = new ArrayList<Student>();
         Scanner scanner = new Scanner(System.in);
-        int n = 1;
 
         for (int i = 0; i < n; i++) {
-
             Student a = new Student();
             a.Nhap();
             t.add(a);
@@ -74,14 +67,14 @@ public class JtableArrayListInit extends JFrame {
             int daiSo = t.get(i).getDaiSo();
             int kinhTe = t.get(i).getKinhTe();
             int trietHoc = t.get(i).getTrietHoc();
-            Vector row = new Vector();
+            ArrayList row = new ArrayList();
             row.add(maSv);
             row.add(hoTen);
             row.add(gioiTinh);
             row.add(daiSo);
             row.add(kinhTe);
             row.add(trietHoc);
-            tableModel.addRow(row);
+            tableModel.addRow(row.toArray());
         }
 
 //        tableModel.insertRow(0, rows1);
@@ -105,11 +98,52 @@ public class JtableArrayListInit extends JFrame {
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         this.jtable.getColumnModel().getColumn(0).setPreferredWidth(100);
         this.jtable.getColumnModel().getColumn(1).setPreferredWidth(280);
-        this.setVisible(true);
+        this.setVisible(false);
     }
 
     public static void main(String[] args) {
-        new JtableArrayListInit();
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Khoi tao Table");
+        System.out.println("Nhap so sinh vien khoi tao");
+        JtableArrayListInit jtable = new JtableArrayListInit(sc.nextInt());
+        while (true) {
+            System.out.println("============================MENU========================");
+            System.out.println("Moi nhap lua chon :");
+            System.out.println("1. Hien thi Table Sinh Vien");
+            System.out.println("2. Sap xep sinh vien");
+            System.out.println("3. Them sinh vien");
+            System.out.println("4. Xoa sinh vien");
+            System.out.println("5. Dong cua so table");
+            System.out.println("6. Thoat chuong trinh");
+            System.out.println("========================================================");
+            try {
+                int input = sc.nextInt();
+                switch (input) {
+                    case 1:
+                        System.out.println("Hien thi Table");
+                        jtable.setVisible(true);
+                        break;
+                    case 2:
+                        System.out.println("Sap xep Sinh vien");
+                        break;
+                    case 3:
+                        System.out.println("Them sinh vien");
+                        break;
+                    case 4:
+                        System.out.println("Xoa sinh vien");
+                        break;
+                    case 5:
+                        System.out.println("Da dong cua so table");
+                        jtable.setVisible(false);
+                        break;
+                    case 6:
+                        System.out.println("Good Bye !!!");
+                        return;
+                }
+            } catch (Exception e) {
+                System.out.println("Lua chon khong chinh xac, Nhap lai !");
+            }
 
+        }
     }
 }
