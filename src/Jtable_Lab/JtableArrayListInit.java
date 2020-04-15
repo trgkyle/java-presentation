@@ -38,16 +38,16 @@ import javax.swing.table.DefaultTableModel;
  * @author quang
  */
 public class JtableArrayListInit extends JFrame {
-
+    
     private JTable jtable = new JTable();
     private DefaultTableModel tableModel = new DefaultTableModel();
-
+    
     public JtableArrayListInit(int n) {
         String[] colsName = {"Ma SV", "Ho ten", "Gioi tinh", "Dai so", "Kinh te", "Triet hoc"};
         tableModel.setColumnIdentifiers(colsName);  // đặt tiêu đề cột cho tableModel
         ArrayList<Student> t = new ArrayList<Student>();
         Scanner scanner = new Scanner(System.in);
-
+        
         for (int i = 0; i < n; i++) {
             Student a = new Student();
             a.Nhap();
@@ -89,7 +89,7 @@ public class JtableArrayListInit extends JFrame {
         jtable.setModel(tableModel);    // kết nối jtable với tableModel 
         initComponent();    // Khởi tạo các components trên JFrame
     }
-
+    
     public void initComponent() {
         this.setSize(600, 200);
         // Đưa jtable vào trong thanh cuộn (khi dữ liệu quá nhiều dòng sẽ có thanh cuộn ngang và doc để xem dữ liệu)
@@ -101,6 +101,53 @@ public class JtableArrayListInit extends JFrame {
         this.setVisible(false);
     }
 
+//  Action 
+    public void sortAction() {
+        System.out.println("Sort by Ma sinh vien ");
+        int rowlength = this.jtable.getRowCount();
+//        System.out.println(this.tableModel.getValueAt(0, 0)); return object
+//        System.out.println("Test row length" + rowlength);
+        for (int i = 0; i < rowlength; i++) {
+            for (int e = 0; e < i; e++) {
+                int value = Integer.parseInt(this.jtable.getValueAt(e, 0).toString());
+                int value2 = Integer.parseInt(this.jtable.getValueAt(i, 0).toString());
+                if (value > value2) {
+                    this.tableModel.moveRow(e, e, e + 1);
+                }
+            }
+        }
+//        this.tableModel.fireTableChanged();
+        this.jtable.repaint();
+    }
+    
+    public void addAction(ArrayList newItem) {
+        this.tableModel.addRow(newItem.toArray());
+//         this.tableModel.fireTableStructureChanged();
+        this.jtable.repaint();
+    }
+    
+    public void addAction(ArrayList newItem, int position) {
+        if ((position < 1) || (position > this.jtable.getRowCount())) {
+            System.out.println("Vi tri chen khong hop le");
+            return;
+        }
+        this.tableModel.insertRow(position - 1, newItem.toArray());
+        this.jtable.repaint();
+    }
+    
+    public void deleteAction(int position) {
+        // check condition first
+        if ((position < 1) || (position > this.jtable.getRowCount())) {
+            System.out.println("Vi tri xoa khong hop le");
+            return;
+        }
+        this.tableModel.removeRow(position - 1);
+    }
+    
+    public void updateAction() {
+        
+    }
+    
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Khoi tao Table");
@@ -125,12 +172,32 @@ public class JtableArrayListInit extends JFrame {
                         break;
                     case 2:
                         System.out.println("Sap xep Sinh vien");
+                        jtable.sortAction();
                         break;
                     case 3:
                         System.out.println("Them sinh vien");
+                        ArrayList newItem = new ArrayList();
+                        Student sv = new Student();
+                        sv.Nhap();
+                        String maSv = sv.getMaSv();
+                        String hoTen = sv.getHoten();
+                        String gioiTinh = sv.getGioiTinh();
+                        int daiSo = sv.getDaiSo();
+                        int kinhTe = sv.getKinhTe();
+                        int trietHoc = sv.getTrietHoc();
+                        newItem.add(maSv);
+                        newItem.add(hoTen);
+                        newItem.add(gioiTinh);
+                        newItem.add(daiSo);
+                        newItem.add(kinhTe);
+                        newItem.add(trietHoc);
+                        jtable.addAction(newItem);
                         break;
                     case 4:
                         System.out.println("Xoa sinh vien");
+                        System.out.println("Nhap vi tri xoa");
+                        int position = sc.nextInt();
+                        jtable.deleteAction(position);
                         break;
                     case 5:
                         System.out.println("Da dong cua so table");
@@ -143,7 +210,7 @@ public class JtableArrayListInit extends JFrame {
             } catch (Exception e) {
                 System.out.println("Lua chon khong chinh xac, Nhap lai !");
             }
-
+            
         }
     }
 }

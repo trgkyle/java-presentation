@@ -44,7 +44,7 @@ public class JtableVectorInit extends JFrame {
 
     public JtableVectorInit(int n) {
         Vector<String> columnNames = new Vector<String>();
-        
+
         columnNames.add("Ma sv");
         columnNames.add("Ho va ten");
         columnNames.add("Gioi tinh");
@@ -52,8 +52,7 @@ public class JtableVectorInit extends JFrame {
         columnNames.add("Kinh Te");
         columnNames.add("Triet Hoc");
         tableModel.setColumnIdentifiers(columnNames);  // đặt tiêu đề cột cho tableModel
-                
-  
+
         Vector<Student> t = new Vector<Student>();
         Scanner scanner = new Scanner(System.in);
 
@@ -100,6 +99,53 @@ public class JtableVectorInit extends JFrame {
         this.setVisible(false);
     }
 
+//  Action 
+    public void sortAction() {
+        System.out.println("Sort by Ma sinh vien ");
+        int rowlength = this.jtable.getRowCount();
+//        System.out.println(this.tableModel.getValueAt(0, 0)); return object
+//        System.out.println("Test row length" + rowlength);
+        for (int i = 0; i < rowlength; i++) {
+            for (int e = 0; e < i; e++) {
+                int value = Integer.parseInt(this.jtable.getValueAt(e, 0).toString());
+                int value2 = Integer.parseInt(this.jtable.getValueAt(i, 0).toString());
+                if (value > value2) {
+                    this.tableModel.moveRow(e, e, e + 1);
+                }
+            }
+        }
+//        this.tableModel.fireTableChanged();
+        this.jtable.repaint();
+    }
+
+    public void addAction(Vector newItem) {
+        this.tableModel.addRow(newItem);
+//         this.tableModel.fireTableStructureChanged();
+        this.jtable.repaint();
+    }
+
+    public void addAction(Vector newItem, int position) {
+        if ((position < 1) || (position > this.jtable.getRowCount())) {
+            System.out.println("Vi tri chen khong hop le");
+            return;
+        }
+        this.tableModel.insertRow(position - 1, newItem);
+        this.jtable.repaint();
+    }
+
+    public void deleteAction(int position) {
+        // check condition first
+        if ((position < 1) || (position > this.jtable.getRowCount())) {
+            System.out.println("Vi tri xoa khong hop le");
+            return;
+        }
+        this.tableModel.removeRow(position - 1);
+    }
+
+    public void updateAction() {
+
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Khoi tao Table");
@@ -124,12 +170,32 @@ public class JtableVectorInit extends JFrame {
                         break;
                     case 2:
                         System.out.println("Sap xep Sinh vien");
+                        jtable.sortAction();
                         break;
                     case 3:
                         System.out.println("Them sinh vien");
+                        Vector newItem = new Vector();
+                        Student sv = new Student();
+                        sv.Nhap();
+                        String maSv = sv.getMaSv();
+                        String hoTen = sv.getHoten();
+                        String gioiTinh = sv.getGioiTinh();
+                        int daiSo = sv.getDaiSo();
+                        int kinhTe = sv.getKinhTe();
+                        int trietHoc = sv.getTrietHoc();
+                        newItem.add(maSv);
+                        newItem.add(hoTen);
+                        newItem.add(gioiTinh);
+                        newItem.add(daiSo);
+                        newItem.add(kinhTe);
+                        newItem.add(trietHoc);
+                        jtable.addAction(newItem);
                         break;
                     case 4:
                         System.out.println("Xoa sinh vien");
+                        System.out.println("Nhap vi tri xoa");
+                        int position = sc.nextInt();
+                        jtable.deleteAction(position);
                         break;
                     case 5:
                         System.out.println("Da dong cua so table");
