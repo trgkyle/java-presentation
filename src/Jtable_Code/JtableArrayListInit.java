@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Jtable_Lab;
+package Jtable_Code;
 
 /**
  *
@@ -46,12 +46,9 @@ public class JtableArrayListInit extends JFrame {
         String[] colsName = {"Ma SV", "Ho ten", "Gioi tinh", "Dai so", "Kinh te", "Triet hoc"};
         tableModel.setColumnIdentifiers(colsName);  // đặt tiêu đề cột cho tableModel
         ArrayList<Student> t = new ArrayList<Student>();
-        Scanner scanner = new Scanner(System.in);
         
         for (int i = 0; i < n; i++) {
-            Student a = new Student();
-            a.Nhap();
-            t.add(a);
+            t.add(new Student());
         }
 
 //        String rows[] = new String[2];
@@ -178,7 +175,6 @@ public class JtableArrayListInit extends JFrame {
                         System.out.println("Them sinh vien");
                         ArrayList newItem = new ArrayList();
                         Student sv = new Student();
-                        sv.Nhap();
                         String maSv = sv.getMaSv();
                         String hoTen = sv.getHoten();
                         String gioiTinh = sv.getGioiTinh();

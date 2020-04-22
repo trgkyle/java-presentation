@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Jtable_Lab;
+package Jtable_Code;
 
 /**
  *
@@ -57,9 +57,7 @@ public class JtableVectorInit extends JFrame {
         Scanner scanner = new Scanner(System.in);
 
         for (int i = 0; i < n; i++) {
-            Student a = new Student();
-            a.Nhap();
-            t.add(a);
+            t.add(new Student());
         }
 
         for (int i = 0; i < t.size(); i++) {
@@ -176,7 +174,6 @@ public class JtableVectorInit extends JFrame {
                         System.out.println("Them sinh vien");
                         Vector newItem = new Vector();
                         Student sv = new Student();
-                        sv.Nhap();
                         String maSv = sv.getMaSv();
                         String hoTen = sv.getHoten();
                         String gioiTinh = sv.getGioiTinh();

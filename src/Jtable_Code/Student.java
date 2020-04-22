@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Jtable_Lab;
+package Jtable_Code;
 
 import java.util.*;
 /**
@@ -21,10 +21,6 @@ public class Student {
     private int trietHoc;
     
     public Student() {
-        
-    }
-    
-    public void Nhap(){
         Scanner sc = new Scanner(System.in);
         System.out.println("Nhap ma sinh vien : ");
         String code = sc.nextLine();
@@ -50,11 +46,6 @@ public class Student {
         this.daiSo = daiSo;
         this.kinhTe = kinhTe;
         this.trietHoc = trietHoc;
-//        int age = sc.nextInt();
-//        sc.nextLine();
-//        a.setName(name);
-//        a.setAge(age);
-//        t.add(a); 
     }
 
     public String getMaSv() {

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Jtable_Lab;
+package Jtable_Code;
 
 /**
  *
@@ -55,10 +55,7 @@ public class Test extends JFrame {
         int n = 1;
 
         for (int i = 0; i < n; i++) {
-
-            Student a = new Student();
-            a.Nhap();
-            t.add(a);
+            t.add(new Student());
         }
 
 //        String rows[] = new String[2];
