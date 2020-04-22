@@ -5,6 +5,10 @@
  */
 package Jtable_Layout;
 
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.Vector;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author truonghdpk
@@ -16,6 +20,7 @@ public class Jtable_Array extends javax.swing.JFrame {
      */
     public Jtable_Array() {
         initComponents();
+        initResolver();
     }
 
     /**
@@ -74,10 +79,7 @@ public class Jtable_Array extends javax.swing.JFrame {
 
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
                 "MSV", "Ho ten", "Gioi tinh", "Dai so", "Kinh te", "Triet hoc"
@@ -86,19 +88,12 @@ public class Jtable_Array extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
-            boolean[] canEdit = new boolean [] {
-                true, true, true, true, false, true
-            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
         });
-        table.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        table.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         table.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 tableFocusGained(evt);
@@ -106,16 +101,31 @@ public class Jtable_Array extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(table);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(188, 42, 471, 143));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(188, 42, 520, 143));
 
         addToggleAction.setText("Them moi");
+        addToggleAction.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addToggleActionActionPerformed(evt);
+            }
+        });
         getContentPane().add(addToggleAction, new org.netbeans.lib.awtextra.AbsoluteConstraints(64, 150, 106, 35));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         addItemAction.setText("Them");
+        addItemAction.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addItemActionActionPerformed(evt);
+            }
+        });
 
         clearItemAction.setText("Clear");
+        clearItemAction.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearItemActionActionPerformed(evt);
+            }
+        });
 
         jLabel7.setText("MSV");
 
@@ -207,7 +217,7 @@ public class Jtable_Array extends javax.swing.JFrame {
                     .addComponent(trietHocItem, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(82, Short.MAX_VALUE)
+                .addContainerGap(131, Short.MAX_VALUE)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(92, 92, 92))
         );
@@ -252,10 +262,10 @@ public class Jtable_Array extends javax.swing.JFrame {
                         .addComponent(clearItemAction, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(160, 160, 160)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(188, 188, 188))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -273,7 +283,7 @@ public class Jtable_Array extends javax.swing.JFrame {
                 .addContainerGap(27, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(188, 203, 471, -1));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(188, 203, 520, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -289,6 +299,7 @@ public class Jtable_Array extends javax.swing.JFrame {
 
     private void delActionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delActionActionPerformed
         // TODO add your handling code here:
+        System.out.println("Delete Action");
     }//GEN-LAST:event_delActionActionPerformed
 
     private void msvItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_msvItemActionPerformed
@@ -302,6 +313,21 @@ public class Jtable_Array extends javax.swing.JFrame {
     private void kinhTeItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kinhTeItemActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_kinhTeItemActionPerformed
+
+    private void addToggleActionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addToggleActionActionPerformed
+        // TODO add your handling code here:
+        System.out.println("Toggle add action");
+    }//GEN-LAST:event_addToggleActionActionPerformed
+
+    private void addItemActionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addItemActionActionPerformed
+        // TODO add your handling code here:
+        System.out.println("Add item action");
+    }//GEN-LAST:event_addItemActionActionPerformed
+
+    private void clearItemActionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearItemActionActionPerformed
+        // TODO add your handling code here:
+        System.out.println("Clear item action");
+    }//GEN-LAST:event_clearItemActionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -337,6 +363,32 @@ public class Jtable_Array extends javax.swing.JFrame {
                 new Jtable_Array().setVisible(true);
             }
         });
+    }
+    
+    private void initResolver(){
+        String[] colsName = {"Ma SV", "Ho ten", "Gioi tinh", "Dai so", "Kinh te", "Triet hoc"};
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        
+        // init data
+        model.addRow(new Object[]{"2017603561", "Nguyen Van Chinh", "Nam", "7", "8", "6"});
+     
+        model.addRow(new Object[]{"2018648652", "Nguyen Thi Lan", "Nu", "6", "7", "7.5"});
+        
+        model.addRow(new Object[]{"2018968745", "Nguyen Thi Lan", "Nu", "6", "7", "7.5"});
+        
+        model.addRow(new Object[]{"2017603561", "Nguyen Van Chinh", "Nam", "7", "8", "6"});
+     
+        model.addRow(new Object[]{"2018648652", "Nguyen Thi Lan", "Nu", "6", "7", "7.5"});
+        
+        model.addRow(new Object[]{"2018968745", "Nguyen Thi Lan", "Nu", "6", "7", "7.5"});
+        
+        model.addRow(new Object[]{"2017603561", "Nguyen Van Chinh", "Nam", "7", "8", "6"});
+     
+        model.addRow(new Object[]{"2018648652", "Nguyen Thi Lan", "Nu", "6", "7", "7.5"});
+        
+        model.addRow(new Object[]{"2018968745", "Nguyen Thi Lan", "Nu", "6", "7", "7.5"});
+        
+        table.repaint();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
