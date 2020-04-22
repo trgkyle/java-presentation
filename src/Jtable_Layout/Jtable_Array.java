@@ -9,12 +9,12 @@ package Jtable_Layout;
  *
  * @author truonghdpk
  */
-public class Jtable_Jframe extends javax.swing.JFrame {
+public class Jtable_Array extends javax.swing.JFrame {
 
     /**
      * Creates new form Jtable_Jframe
      */
-    public Jtable_Jframe() {
+    public Jtable_Array() {
         initComponents();
     }
 
@@ -320,20 +320,21 @@ public class Jtable_Jframe extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Jtable_Jframe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Jtable_Array.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Jtable_Jframe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Jtable_Array.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Jtable_Jframe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Jtable_Array.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Jtable_Jframe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Jtable_Array.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Jtable_Jframe().setVisible(true);
+                new Jtable_Array().setVisible(true);
             }
         });
     }
